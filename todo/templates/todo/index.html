@@ -1,0 +1,18 @@
+<html>
+
+	<head>
+	</head>
+
+	<body>
+		{% if todos %}
+		<ul>
+			{% for item in todos %}
+			<li> {{item.title}} </li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p> No todos to display</p>
+		{% endif %}
+	</body>
+
+</html>
