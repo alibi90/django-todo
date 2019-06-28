@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic, View
+from django.views.generic.edit import CreateView, UpdateView
+from django.urls import reverse
 
 from .models import TodoItem
 
@@ -25,15 +27,31 @@ class IndexView(View):
         return render(request, 'todo/index.html', {"todos": all_todos})
 
 
-def addTodo(request):
+# def addTodo(request):
 
-	import pdb; pdb.set_trace()
+# 	if request.method == "POST":
+# 		import pdb; pdb.set_trace()
+# 		title = request.POST['title']
+# 		content = request.POST['content']
+# 		due_date = request.POST['due_date']
 
-	if request.method == "POST":
-		title = request.POST['title']
-		content = request.POST['content']
-		due_date = request.POST['due_date']
+# 		TodoItem.objects.create(title=title, content=content, due_date=due_date)
 
-		TodoItem.objects.create(title=title, content=content, due_date=due_date)
-	elif request.method == "GET":
-		return render(request, 'todo/add.html')
+# 		return redirect('/todo')
+# 	elif request.method == "GET":
+# 		return render(request, 'todo/add.html')
+
+class AddTodoCreate(CreateView):
+    model = TodoItem
+    fields = ['title', 'content', 'due_date']
+
+    def get_success_url(self):
+        return reverse('todo:index')
+
+
+class UpdateTodo(UpdateView):
+    model = TodoItem
+    fields = ['title', 'content', 'due_date']
+
+    def get_success_url(self):
+        return reverse('todo:index')

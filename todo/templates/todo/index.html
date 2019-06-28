@@ -7,7 +7,7 @@
 		{% if todos %}
 		<ul>
 			{% for item in todos %}
-			<li> {{item.title}} </li>
+			<li><a href={% url 'todo:update' item.id %}> {{item.title}} </a></li>
 			{% endfor %}
 		</ul>
 		{% else %}
