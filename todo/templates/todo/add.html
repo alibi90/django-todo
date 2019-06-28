@@ -1,0 +1,13 @@
+<form  method="POST">
+	{% csrf_token %}
+	<input type="text" id="title" name="title">
+	<label for="title"> Title </label><br>
+
+	<input type="text" id="content" name="content">
+	<label for="content"> Content </label><br>
+
+	<input type="date" id="due_date" name="due_date">
+	<label for="due_date"> DueDate </label><br>
+
+	<input type="submit" value="Add">	
+</form>
